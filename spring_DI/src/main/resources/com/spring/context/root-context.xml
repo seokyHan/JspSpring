@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<bean id="sqlSessionFactory" class="com.jsp.datasource.OracleMybatisSqlSessionFactory"/>
+	<bean id ="memberDAO" class="com.jsp.dao.MemberDAOImpl" />
+	<bean id ="boardDAO" class="com.jsp.dao.BoardDAOImpl" />
+	<bean id ="replyDAO" class="com.jsp.dao.ReplyDAOImpl" />
+	<bean id ="noticeDAO" class="com.jsp.dao.NoticeDAOImpl" />
+	<bean id ="pdsDAO" class="com.jsp.dao.PdsDAOImpl" />
+	<bean id ="attachDAO" class="com.jsp.dao.AttachDAOImpl" />
+	
+	<bean id="memberService" class="com.jsp.service.MemberServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	<bean id="searchMemberService" class="com.jsp.service.SearchMemberServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="memberDAO" ref="memberDAO"/>
+	</bean>
+	
+	
+	
+	<bean id="boardService" class="com.jsp.service.BoardServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="boardDAO" ref="boardDAO"/>
+		<property name="replyDAO" ref="replyDAO"/>
+	</bean>
+	
+	<bean id="noticeService" class="com.jsp.service.NoticeServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="noticeDAO" ref="noticeDAO"/>
+	</bean>
+	
+	<bean id="pdsService" class="com.jsp.service.PdsServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+		<property name="pdsDAO" ref="pdsDAO"/>
+		<property name="attachDAO" ref="attachDAO"/>
+	</bean>
+	
+	
+</beans>
